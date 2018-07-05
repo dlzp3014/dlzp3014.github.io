@@ -14,7 +14,7 @@ url: "http://blog.dlzp.tech/" # the base hostname & protocol for your site
 author: dlzp
 
 # Gems
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 # Build settings
 markdown: kramdown
