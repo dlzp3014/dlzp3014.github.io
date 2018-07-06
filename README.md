@@ -1,49 +1,92 @@
-# [Air Raya Group](http://www.airrayagroup.com/)
+# 关于这个博客主题
 
-[Sci blog](https://yourfreebies.github.io/sciblog/) is jekyll theme created by [Air Raya Group](http://www.airrayagroup.com/).
+随着 jekyll 的版本升级，同时我也想重构我的旧版博客主题，因此在这个月对博客进行了重构加改版，这个仓库存放我的新博客，并且我也会一直使用这个主题。目前基本改版完成，后续可能还会有些细节上的修补。
 
-[demo](https://yourfreebies.github.io/sciblog/) 
-
-Unless otherwise noted, this theme is released under MIT licence. 
-
-## Credits
-Thank you so much for providing free resources and inspirations
-* [getbootstrap](http://getbootstrap.com/)
-* [jekyll](https://jekyllrb.com/)
-* [startboostrap](http://startbootstrap.com/)
-* [noisetexturegenerator](http://www.noisetexturegenerator.com/)
-* [yellow blue by Christos Alatzas](http://demo-yb.yellowblue.eu/)
-
-## Getting Started
-
-To use this template, download it [here] (https://github.com/airrayagroupwebdesign/sciblog/archive/master.zip). Contact our team for customization and support. Rates may apply.
-To install *jekyll* and *this theme*
-
-1. type on search `cmd.exe` or command prompt
-2. In `C:\Users\my pc\desktop\blog>`
-3. Install ruby by going to `http://rubyinstaller.org/downloads/` to download
-4. When installing ruby, make sure to check `add ruby executables to your PATH`
-5. Install jekyll `C:\Users\my pc\desktop\blog\gem install jekyll`
-6. Create jekyll theme  `C:\Users\my pc\desktop\blog\jekyll new my-awesome-site`
-7. Go to blog my-awesome-site `C:\Users\my pc\desktop\blog>cd my-awesome-site`
-8. Preview your blog `C:\Users\my pc\desktop\blog\my-awesome-site>jekyll serve`
-9. Now browse to `http://localhost:4000`
-10. Alternatively, you can download my jekyll theme here `https://github.com/airrayagroupwebdesign/sciblog`
-11. click download zip and unzip it.
-12. You can copy and paste everything inside to blog folder in desktop such as `C:\Users\my pc\desktop\blog>`
-13. Install jekyll-paginate  `C:\Users\my pc\desktop\blog>gem install jekyll-paginate`
-14. Preview the blog and make changes `C:\Users\my pc\desktop\blog>jekyll serve`
-15. Now browse to `http://localhost:4000`
-
-## Bugs and Issues
-
-Have a bug or an issue with this template? Please contact our team airrayagroup@gmail.com or fork and contribute.
-
-## Creator
-
-Sci blog theme was created by and is maintained by **Air raya Group Web Design team**, at [Air Raya Group](http://www.airrayagroup.com/).
+博客访问地址：[http://gaohaoyang.github.io/](http://gaohaoyang.github.io/)。若您喜欢这个新的博客主题，请给我个star以示鼓励吧，欢迎使用。
 
 
-## Copyright and License
+## 预览图
 
-Copyright 2015 AIR RAYA GROUP. The work is licenced under MIT[](https://github.com/airrayagroupwebdesign/sciblog/blob/master/LICENSE) license.
+先上预览图：
+
+主页
+![index](http://ww3.sinaimg.cn/large/7011d6cfjw1f3bdli86awj211k0oyqen.jpg)
+
+文章页
+![post](http://ww4.sinaimg.cn/large/7011d6cfjw1f3bdmzb9v6j210p0j7gwn.jpg)
+
+## 各部分详情
+
+### 主页 Home
+
+主页默认展示5篇文章的摘要部分，用户点击标题或阅读全文后进入文章页。右侧为近期文章、分类和标签3块区域，用户可以继续在这部分添加区域，只需修改`index.html`即可。
+
+### 归档 Archives
+
+按照年份归档文章。
+
+### 分类 Categories
+
+按照文章的分类，显示文章。
+
+### 标签 Tags
+
+按照文章的标签显示文章。
+
+### 收藏 Collections
+
+本页是用`markdown`写的，用户可以收藏自己喜欢的文章链接。
+
+### 展示 Demo
+
+使用 [Masonry](http://masonry.desandro.com/) 重写了瀑布流布局，响应式布局，更好的交互体验。
+
+### 关于 About
+
+对个人和对本站的介绍，使用`markdown`写的。
+
+### 评论
+
+支持 [多说评论](http://duoshuo.com/) 和 [disqus](https://disqus.com/) 评论。
+
+只需要在 `_config.yml` 修改相应的配置`short_name`即可，如下：
+
+```yml
+# comments
+# two ways to comment, only choose one, and use your own short name
+# 两种评论插件，选一个就好了，使用自己的 short_name
+duoshuo_shortname: #xxx
+disqus_shortname: xxx
+```
+
+### 目录 Contents
+
+页面滚动时目录固定在屏幕右侧，若目录高度超出屏幕高度，目录产生滚动条。
+
+### 代码高亮
+
+随着 jekyll 的升级，目前代码高亮使用风格与 github 上的 markdown 写法一致。
+
+### 灯泡效果
+
+![light](http://ww3.sinaimg.cn/large/7011d6cfjw1f3be6y4vp3j209i02rweg.jpg)
+
+可以看到导航按钮高亮时，下面的阴影效果，我把这个称谓灯泡效果。
+
+### 移动端适配
+
+完美适配移动端。
+
+![mobile](http://ww4.sinaimg.cn/large/7011d6cfjw1f3bebnzxkpj20ah0fzgp4.jpg)
+
+### Footer
+
+欢迎使用这个主题，使用时请保留 footer 上的模板主题来源。Theme designed by [HyG](https://github.com/gaohaoyang).
+![footer](http://ww3.sinaimg.cn/large/7011d6cfjw1f3bepd8002j20hl02ct95.jpg)
+
+关于旧版博客，我不在维护，同时我把代码转移到了另一个仓库，见 [Gaohaoyang/old-blog](https://github.com/Gaohaoyang/old-blog)。
+
+
+## License
+
+[MIT License](https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/LICENSE.md)

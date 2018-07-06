@@ -1,26 +1,50 @@
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <p>Copyright &copy; dlzp Blog<p>
-                </div>
-                <div class="col-lg-6">
-                    <p style="float: right;">GitHub Address <a href="https://github.com/dlzp3014">dlzp3014</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
-	
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<footer class="site-footer">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+
+  <div class="wrapper">
+      <p class="description">
+          {% if site.description_footer %}
+          {{site.description_footer}}
+          {% endif %}
+      </p>
+        <p class="contact">
+            Contact me at:
+            {% if site.github_username %}
+            <a href="https://github.com/{{site.github_username}}"><i class="fa fa-github" aria-hidden="true"></i></a>
+            {% endif %}
+
+            {% if site.email %}
+            <a href="mailto:{{site.email}}"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            {% endif %}
+        </p>
+        <p class="power">
+            <span>
+                Copyright © dlzp Blog
+            </span>
+            <span>
+                GitHub Address <a href="https://github.com/dlzp3014">dlzp3014</a>.
+            </span>
+        </p>
+
+  </div>
+</footer>
+<script src="{{ "/js/main.js " | prepend: site.baseurl }}" charset="utf-8"></script>
+
+{% if site.duoshuo_shortname %}
+<!-- 多说评论框 start -->
+    <!-- <div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div> -->
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"{{site.duoshuo_shortname}}"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
     </script>
+<!-- 多说公共JS代码 end -->
+{% endif %}
