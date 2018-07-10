@@ -234,6 +234,19 @@ public class ExceptionHandlerConfig {
 }
 ```
 
+### @PathVariable
+与@RequestParam使用方式相同
+```java
+@RestController
+@Validated
+public class UserController {
+    @GetMapping(value = "findByAge/{ageRange}")
+    public String findUserPath(@NumberRange(min = 18, max = 32) @PathVariable(name = "ageRange", required = true) String ageRange) {
+            return ageRange;
+    }
+}
+```
+
 ## 对象级联校验
 对象内部包含另一个对象作为属性，属性上加@Valid，可以验证作为属性的对象内部的验证
 ```java
@@ -326,5 +339,137 @@ public class NumberRangeValidator implements ConstraintValidator<NumberRange, St
 private String ageRange;
 ```
 
+## Validator Internationalization
 
+### 创建国际化properties文件
 
+- 在resources目录下增加 ValidationMessages.properties ValidationMessages_en_US.properties ValidationMessages_zh_CN.properties 三个文件，SpringBoot 默认会读取classpath下的校验国家化message
+- 在使用校验注解时添加messages属性，使用`{}`符号，值为ValidationMessages中配置的key，如：
+
+```java
+@GetMapping(value = "findByAge/{ageRange}")
+public String findUserPathI18n(
+        @NumberRange(min = 18, max = 32, message = "{validate.UserEntity.ageRange}") @PathVariable(name = "ageRange", required = true) String ageRange) {
+    return ageRange;
+}
+//http://localhost:8080/findByAgeI18n/ageRange=02-4 return findUserPathI18n.ageRange: 年龄区间最小值为18,且最大值为32
+```
+ValidationMessages.properties：  
+validate.UserEntity.ageRange=ageRange min is {} and max is {max}
+ValidationMessages_en_US.properties：  
+validate.UserEntity.ageRange=ageRange min is {} and max is {max}
+ValidationMessages_zh_CN.properties：  
+validate.UserEntity.ageRange=年龄区间最小值为{min},且最大值为{max}
+
+### 加载自定义路径下的ValidationMessages
+
+- 加载自定义校验文件路径
+```java
+public ResourceBundleMessageSource getMessageSource() {
+    ResourceBundleMessageSource source = new ResourceBundleMessageSource();
+    source.setDefaultEncoding("utf-8");
+    source.setBasename("i18nValidationMessages/ValidationMessages");// 此处为i18nValidationMessages文件目录
+    return source;
+}
+```
+
+- 定义Validator Bean ,设置ValidationMessageSource
+```java
+@Bean
+public Validator getValidator() {
+    LocalValidatorFactoryBean validator = new LocalValidatorFactoryBean();
+    validator.setValidationMessageSource(getMessageSource());
+    return validator;
+}
+```
+
+- 定义MethodValidationPostProcessor Bean
+
+```java
+/**
+ * 测试后不用设置，也可实现校验国际化
+ */
+@Bean
+public MethodValidationPostProcessor methodValidationPostProcessor() {
+    MethodValidationPostProcessor processor = new MethodValidationPostProcessor();
+    processor.setValidator(getValidator());
+    return processor;
+}
+
+@NumberRange(min = 24, max = 45, message = "{validate.UserEntity.ageRange}", groups = { Update.class, Add.class })
+private String ageRange;
+
+```
+
+## 校验错误统一处理
+
+- 定义统一返回错误信息Object
+
+```java
+/**
+ * 
+ * @ClassName: ResponseException
+ * @Description: TODO(统一异常处理返回对象)
+ * @author dlzp
+ *
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResponseException implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    private Integer status;
+
+    private String errorCode;
+
+    private String message;
+    
+}
+```
+- 自定义校验异常处理器
+
+```java
+@ControllerAdvice
+@Component
+public class ExceptionHandlerConfig {
+
+    final String validateErro = "10001";
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseException handle(ConstraintViolationException exception) {
+        return new ResponseException(HttpStatus.BAD_REQUEST.value(), validateErro, exception.getLocalizedMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseException handle(MethodArgumentNotValidException exception) {
+        return new ResponseException(HttpStatus.BAD_REQUEST.value(), validateErro,
+                exception.getBindingResult().getFieldErrors().stream()
+                        .map(b -> b.getField() + ":" + b.getDefaultMessage()).collect(Collectors.joining(",")));
+    }
+
+}
+```
+SpringBoot 源码
+```java
+public void afterPropertiesSet() {
+... 
+//targetInterpolator 为null时使用默认的MessageInterpolator
+MessageInterpolator targetInterpolator = this.messageInterpolator;
+if (targetInterpolator == null) {
+    targetInterpolator = configuration.getDefaultMessageInterpolator();
+}
+configuration.messageInterpolator(new LocaleContextMessageInterpolator(targetInterpolator));
+
+...
+
+}
+```
