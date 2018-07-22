@@ -9,7 +9,9 @@ tags: Spring Java-Annotation
 * content
 {:toc}
 
-Spring注解主要用来配置注入Bean,切面相关配置(@Transactional)，随着注解的大量使用，尤其是相同的多个注解用到各个类中，显得代码重复度提高，这些就是所谓的模板代码。面对这些问题，Spring中就用到了组合注解来消除这些重复配置，如@configuration就是组合@Component注解，表名这个类其实也是一个Bean。  
+Spring注解主要用来配置注入Bean,切面相关配置(@Transactional)，随着注解的大量使用，尤其是相同的多个注解用到各个类中，显得代码重复度提高，这些就是所谓的模板代码。面对这些问题，Spring中就用到了组合注解来消除这些重复配置，如@configuration就是组合@Component注解，表明这个类其实也是一个Bean。  
+
+
 
 
 所谓元注解其实就是可以注解到其他注解的注解，被注解的注解称之为组合注解，组合组件具备元注解的功能。   
