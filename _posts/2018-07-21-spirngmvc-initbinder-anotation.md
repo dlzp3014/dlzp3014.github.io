@@ -233,7 +233,7 @@ public void bindDate(@CustomDateConvert(params = "date") Date date) {
 
 ## 第四种方式：实现Converter接口
 
-```
+```java
 @Component
 public class StringToDateConverter implements Converter<String, Date> {
 

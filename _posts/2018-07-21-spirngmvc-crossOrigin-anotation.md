@@ -9,7 +9,8 @@ tags: SpringMVC
 * content
 {:toc}
 
-出于安全原因，浏览器禁止Ajax调用驻留在当前原点之外的资源,即阻止跨域的ajax请求。具体而言，Web 应用程序能且只能使用 XMLHttpRequest 对象向其加载的源域名发起 HTTP 请求，而不能向任何其它域名发起请求。   
+出于安全原因，浏览器禁止Ajax调用驻留在当前原点之外的资源,即阻止跨域的ajax请求。具体而言，Web 应用程序能且只能使用 XMLHttpRequest 对象向其加载的源域名发起 HTTP 请求，而不能向任何其它域名发起请求。
+   
 Spring MVC 从4.2版本开始增加了对CORS的支持,[官方文档](https://docs.spring.io/spring/docs/5.0.8.RELEASE/spring-framework-reference/web.html#mvc-cors-controller)
 
 ## 某个方法支持跨域访问
@@ -27,6 +28,19 @@ public class CorsRest {
 	}
 }
 ```
+
+## 使用HttpServletResponse设置跨域请求头信息
+
+```java
+@RequestMapping
+public Object index(HttpServletRequest request, HttpServletResponse response, @CookieValue(value = "sid", required = false) String sid) {
+	response.setHeader("Access-Control-Allow-Origin","http://a.test.com"); //允许跨域的Origin设置
+	response.setHeader("Access-Control-Allow-Credentials","true"); //允许携带cookie
+	logger.info("cookie sid = " + sid);
+	return restTemplateService.someRestCall();
+}
+```
+
 
 ## 整个controller支持跨域访问
 
@@ -59,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 ## 全局CORS配置
 
-``java
+```java
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
@@ -105,4 +119,56 @@ public FilterRegistrationBean corsFilter() {
 * AbstractHandlerMapping#setCorsConfiguration() 允许指定一个映射，其中有几个CorsConfiguration 映射在路径模式上，比如/api/**。
 * 子类可以通过重写AbstractHandlerMapping类的getCorsConfiguration(Object, HttpServletRequest)方法来提供自己的CorsConfiguration。
 * 处理程序可以实现 CorsConfigurationSource接口（如ResourceHttpRequestHandler），以便为每个请求提供一个CorsConfiguration。
+
+* Note：服务器端 Access-Control-Allow-Credentials = true时，参数Access-Control-Allow-Origin 的值不能为 '*'，必须为具体的origin
+
+## 前端调用方式
+
+[参考文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS)
+
+- 原生ajax调用示例：
+
+```javascript
+var xhr = new XMLHttpRequest();  
+xhr.open("POST", "http://b.test.com/api/rest", true);  
+xhr.withCredentials = true; //支持跨域发送cookies
+xhr.send();
+
+```
+- jQuery调用示例：
+
+```javascript
+$.ajax({
+    url: 'http://b.test.com/api/rest',
+    dataType: 'json',
+    type : 'POST',
+    xhrFields: {
+        withCredentials: true //是否携带cookie
+    },
+    crossDomain: true,
+    contentType: "application/json",
+    success: (res) => {
+      console.log(res);
+    }
+  });
+  
+```  
+- fetch方式
+
+```javascript
+fetch('http://b.test.com/api/rest', 
+  {credentials: 'include'}  //注意这里的设置，支持跨域发送cookies
+).then(function(res) {
+  if (res.ok) {
+    res.json().then(function(data) {
+      console.log(data.value);
+    });
+  } else {
+    console.log("Looks like the response wasn't perfect, got status", res.status);
+  }
+}, function(e) {
+  console.log("Fetch failed!", e);
+});
+
+```
 
