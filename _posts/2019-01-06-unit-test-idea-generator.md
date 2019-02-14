@@ -2,8 +2,8 @@
 layout: post
 title:  "idea中使用Junit和JUnitGenerator V2.0自动生成测试模块"
 date:   2019-01-05 15:40:00
-categories: idea Unit-Test
-tags: Junit
+categories: idea
+tags: idea Junit
 ---
 * content
 {:toc}

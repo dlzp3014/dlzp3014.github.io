@@ -10,13 +10,44 @@ tags: Junit
 * content
 {:toc}
 
-[ JUnit 4 ](https://junit.org/junit4/) -- [javadoc](https://junit.org/junit4/javadoc/latest/index.html)
+Junit是一个由Java编写的开源的回归测试(指重复以前全部或者部分的相同测试)框架，用于编写和运行可重复的测试，它是用于单元测试框架提提xUnit的一个实例。所谓单元测试也就是一个白盒测试，该框架得到了绝大多数JavaIDE和其他工具(Maven)的集成支持，同时还有很多的第三方扩展和增强包可使用。
+
+Junit在执行每个@Test方法之前，会为测试类创建一个新的是实例，这有助于提供测试方法之间的独立性，并且避免在测试代码中产生意外的副作用。因为每个测试方法都运行于一个新的测试类实例上，所以不能再测试方法之间重用各个实例的变量值
+
+Junit没有main方法作为入口其运行的原理为：在org.junit.runner.JUnitCore.class(JUnitCore is a facade for running tests)类中，就一个标准的main方法，这就是JUnit的入口函数:
+
+```java
+public static void main(String... args) {
+    Result result = new JUnitCore().runMain(new RealSystem(), args);
+    System.exit(result.wasSuccessful() ? 0 : 1);
+}
+```
+
+为了进行测试验证， JUnit提供了Assert类，里面包含了大量的assert方法，主要包括Equals,Same,True,False,NotNull,ArrayEquals
+
+Junit中可以使用Suite一次运行多个测试用例，Suite是一个容器，用来把几个测试类归在一起，并把它们作为一个集合来运行，测试运行器会启动Suite，而运行哪些测试类由Suite决定
+
+```java
+@RunWith(Suite.class)
+@Suite.SuiteClasses(Clazz.class)
+```
+[官网地址]：
+[ JUnit 4 ](https://junit.org/junit4/) -- [javadoc](https://junit.org/junit4/javadoc/latest/index.html) 
 
 [ JUnit 5 ](https://junit.org/junit5/) -- [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/)
 
 
 
 
+
+
+
+## Junit相关概念
+- 测试: 一个以@Test注释的方法定义，为了运行这个方法，Junit会创建一个包含类的新实例，然后再调用这个被注释的方法
+- 测试类: 一个测试类是@Test方法的容器
+- Assert: 定义想测试的条件，当条件成立时，assert方法保持沉默，条件不成立时则抛出异常
+- Suite: Suite允许将测试类归成一组
+- Runner: Runner类用来运行测试，Junit4是向后兼容的，可以运行Junit3的测试
 
 ## 使用Junit时注意事项
 
