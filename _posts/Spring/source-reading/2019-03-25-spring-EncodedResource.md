@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spring源码-Resource资源抽象"
+title:  "Spring源码-EncodedResource处理特定编码的资源"
 date:   2019-03-27 21:50:00
 categories: Spring 
 tags: Spring-Source-Reading Spring-Core
