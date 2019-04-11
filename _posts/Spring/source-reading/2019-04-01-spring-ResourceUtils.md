@@ -14,7 +14,6 @@ ResourceUtils主要用于解析系统文件中位置资源的文件，用于框�
 ## 类描述
 
 ```java
-```java
 /**
  * Utility methods for resolving resource locations to files in the
  * file system. Mainly for internal use within the framework. 
@@ -38,6 +37,10 @@ public abstract class ResourceUtils {
 
 }
 ```
+
+
+
+
 
 
 ## 常量

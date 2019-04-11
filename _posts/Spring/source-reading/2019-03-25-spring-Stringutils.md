@@ -1092,7 +1092,7 @@ public static String[] tokenizeToStringArray(
 		return new String[0];
 	}
 
-	StringTokenizer st = new StringTokenizer(str, delimiters);
+	StringTokenizer st = new StringTokenizer(str, delimiters); //使用jdk 提供的StringTokenizer 字符串分词器
 	List<String> tokens = new ArrayList<>();
 	while (st.hasMoreTokens()) {
 		String token = st.nextToken();
