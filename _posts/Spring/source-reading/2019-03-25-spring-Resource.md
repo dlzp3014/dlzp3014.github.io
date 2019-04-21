@@ -10,7 +10,7 @@ tags: Spring-Source-Reading Spring-Core
 {:toc}
 
 
-Resource接口提供了更强大的底层资源访问能力，该接口拥有对应不同资源类型的实现类。具体使用过程参考：[【Spring中资源访问】](/2019/04/11/spring-Resource-access/)
+Resource接口提供了更强大的底层资源访问能力，该接口拥有对应不同资源类型的实现类。具体使用过程参考：[【Spring中资源抽象接口-Resource】](/2019/04/11/spring-Resource-access/)
 
 
 
