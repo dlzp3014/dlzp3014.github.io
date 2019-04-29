@@ -44,8 +44,63 @@ Resource在Spring框架中起着不可或缺的作用，Spring框架使用Resour
 
 - 通过FileSystemResource以文件系统绝对路径的方式进行访问
 
-- 
+- 通过ClassPathResource以类路径的方式进行访问
 
+- 同ServletContextResource以相对于Web应用根目录的方式进行访问
+
+相比于通过JDK的File类访问文件资源的方式，Spring的Resource实现类无疑提供了更加灵活便捷的访问方式，用户可以根据实例情况选择适合的Resource实现类访问资源。下面分别通过FileSystemRessource和ClassPathResource访问同一个文件资源：
+
+
+```java
+Path path = Paths.get(ResourceUtils.class.getClassLoader().getResource("config.properties").toURI());
+
+//使用系统文件路径方式加载文件
+WritableResource writableResource = new PathResource(path);
+
+OutputStream outputStream = writableResource.getOutputStream();
+outputStream.write("hello word".getBytes());
+outputStream.close();
+
+InputStream inputStream = writableResource.getInputStream();
+
+ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+int i;
+while ((i = inputStream.read()) != -1) {
+    byteArrayOutputStream.write(i);
+}
+Assert.assertEquals("hello word", byteArrayOutputStream.toString());
+
+
+//使用类路径方式加载文件
+Resource classPathResource = new ClassPathResource("config.properties");
+
+Assert.assertEquals("config.properties",classPathResource.getFilename());
+
+
+```
+
+获取资源后，就可以通过Resource接口定义的多个方法访问文件的数组和其他信息，如可以通过getFileName()方法获取文件名，通过getFile()方法获取资源对应的File对象，通过getInputStream()方法直接获取文件的输入流；通过WritableResource接口定义的多个方法向文件写入数据，通过getOutputStream()方法直接获取文件的输出流；也可以通过createRelative(String relativePath)在资源相对地址上创建新的文件
+
+在Web应用中，可以通过ServletContextResource以相对于Web应用根目录的方式访问文件资源：
+
+```java
+//注意文件资源地址以相对于Web应用根路径的方式表示
+ServletContextResource servletContextResource=new ServletContextResourcea(servletContext,"/WEB-INF/classes/config/config.properties");
+```
+
+对于位于远程服务器(Web服务器或者FTP服务器)的文件资源，可以通过UrlResource进行访问
+
+
+资源加载时默认采用系统编码读取资源内容，如果资源文件采用特殊的编码格式，可以通过EncodedResource对资源进行编码，以保证资源内容操作的正确性：
+
+```java
+Resource classPathResource = new ClassPathResource("config.properties");
+
+EncodedResource encodedResource = new EncodedResource(classPathResource,"UTF-8");
+
+String content = FileCopyUtils.copyToString(encodedResource.getReader());
+
+```
 
 
 
