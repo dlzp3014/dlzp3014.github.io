@@ -31,6 +31,10 @@ public interface BeanNameGenerator {
 Spring中提供了两种实现：AnnotationBeanNameGenerator和DefaultBeanNameGenerator
 
 
+
+
+
+
 ## DefaultBeanNameGenerator：默认BeanName生成器
 
 默认BeanNameGenerator接口的实现，委托给BeanDefinitionReaderUtils#generateBeanName(BeanDefinition, BeanDefinitionRegistry)方法，内部执行过程参考：[Spring源码-BeanDefinitionReaderUtils]()
