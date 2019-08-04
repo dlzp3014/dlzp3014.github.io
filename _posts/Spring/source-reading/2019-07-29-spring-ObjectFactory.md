@@ -53,7 +53,7 @@ public interface ObjectFactory<T> {
 
 ### RequestObjectFactory:ServletRequest对象工厂
 
-currentRequestAttributes()实现说明参考[Spring源码-WebApplicationContextUtils]（/2019/07/18/spring-WebApplicationContextUtils/）
+currentRequestAttributes()实现说明参考[Spring源码-WebApplicationContextUtils](/2019/07/18/spring-WebApplicationContextUtils/)
 
 ```java
 /**
