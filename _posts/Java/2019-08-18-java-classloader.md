@@ -12,7 +12,11 @@ tags: Java JVM
 ClassLoad类装载器在Java中有着非常重要的作用，主要工作在Class装载的加载阶段，主要作用是从系统外部获得Class二进制数据流
 
 
-## ClassLoad类：
+
+
+
+
+## ClassLoader类：
 
 `所有的Class都是由ClassLoader进行加载的，ClassLoader负责通过各种方式将Class二进制数据流读入系统，然后交给Java虚拟机进行连接，初始化等操作`。ClassLoader在整个装载阶段，只能影响到类的加载，而无法通过ClassLoader去改变类的连接和初始化行为
 
