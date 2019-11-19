@@ -3,7 +3,7 @@ layout: post
 title:  "Spring组合注解和元注解"
 date:   2018-07-21 20:11:23
 categories: Spring 
-tags: Spring Java-Annotation
+tags: Spring-Annotation
 ---
 
 * content

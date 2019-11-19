@@ -3,7 +3,7 @@ layout: post
 title:  "Spring源码-InitializingBean(Bean)初始化接口"
 date:   2019-10-27 08:38:00
 categories: Spring 
-tags: Spring-Source-Reading Spring-MVC
+tags: Spring-Source-Reading Spring-Beans
 ---
 
 * content
