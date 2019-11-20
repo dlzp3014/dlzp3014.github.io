@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "JVM-Class文件的装载流程"
+title:  "Class文件的装载流程"
 date:   2019-08-18 08:38:00
 categories: Java 
-tags: Java JVM
+tags: Java-JVM
 ---
 
 * content

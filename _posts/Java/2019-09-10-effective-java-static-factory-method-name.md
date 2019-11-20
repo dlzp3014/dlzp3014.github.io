@@ -3,7 +3,7 @@ layout: post
 title:  "静态工厂方法命名习惯"
 date:   2019-09-10 08:38:00
 categories: Java 
-tags: Java-Coding
+tags: Effective-Java Java-Coding
 ---
 
 * content
