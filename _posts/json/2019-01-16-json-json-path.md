@@ -10,7 +10,7 @@ tags: JsonPath
 {:toc}
 
 
-`Jayway JsonPath`是一个用于读取JSON文档的`Java DSL`类库，表达式总是引用JSON结构，其方式与XPath表达式与XML文档结合使用的方式相同。不管对象还是数组，JsonPath中的根元素总是被引用为`$`，可以使用点符号`$.store.book[0].title`或者括号符号`$['store']['book'][0]['title']`。[GitHub地址为:https://github.com/json-path/JsonPath](https://github.com/json-path/JsonPath)
+`Jayway JsonPath`是一个用于读取JSON文档的`Java DSL`类库，表达式总是引用JSON结构，其方式与XPath表达式与XML文档结合使用的方式相同。不管对象还是数组，JsonPath中的根元素总是被引用为`$`，可以使用点符号`$.store.book[0].title`或者括号符号`$['store']['book'][0]['title']`。[GitHub地址为:https://github.com/json-path/JsonPath](https://github.com/json-path/JsonPath)，除了JsonPath外，还包括`json-path-assert`和`json-path-web-test`组件
 
 
 
