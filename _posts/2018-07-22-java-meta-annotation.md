@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "Java 元注解"
+title:  "Java元注解"
 date:   2018-07-21 15:57:23
 categories: Java 
-tags: Java Java-Annotation
+tags: Java-Annotation
 ---
 
 * content
