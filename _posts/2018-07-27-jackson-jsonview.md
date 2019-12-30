@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "Jackson @JsonView 注解使用"
-date:   2018-08-21 23:49:00
-categories: jackson
-tags: jackson SpringMVC
+date:   2018-08-21 08:38:00
+categories: JSON
+tags: Jackson Spring-MVC
 ---
 
 * content
