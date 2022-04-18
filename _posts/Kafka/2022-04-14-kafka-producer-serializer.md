@@ -8,6 +8,7 @@ tags: Kafka
 
 * content
 {:toc}
+
 在网络中发生数据都是以字节的方式，Kafka也不例外，Producer需要用序列化器(Serializer)把消息转换成字节数组才能通过网络发生给Kafka。Kafka默认提供了多种序列化器，其中常用的serializer如下：
 
 - ByteArraySerializer
