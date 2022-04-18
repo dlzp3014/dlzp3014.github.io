@@ -18,6 +18,9 @@ tags: Kafka
 
 
 
+
+
+
 ## Serializer接口定义
 
 Serializer接口提供了3个方法，代码如下：

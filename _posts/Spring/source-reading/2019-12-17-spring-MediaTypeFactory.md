@@ -11,6 +11,10 @@ tags: Spring-Source-Reading
 
 MediaTypeFactory用于从`Resource`资源或者文件名称解析MediaType对象，提供的静态方法如下:
 
+
+
+
+
 - Optional<MediaType> getMediaType(@Nullable Resource resource)
 
 从Resource对象中获取MediaType，如果没有找到返回NULL
