@@ -11,9 +11,9 @@ tags: Kafka
 
 在网络中发生数据都是以字节的方式，Kafka也不例外，Producer需要用序列化器(Serializer)把消息转换成字节数组才能通过网络发生给Kafka。Kafka默认提供了多种序列化器，其中常用的serializer如下：
 
-- ByteArraySerializer
--  StringSerializer
--  ByteBufferSerializer
+-ByteArraySerializer
+-StringSerializer
+-ByteBufferSerializer
 
 生产者使用的序列化器和消费者使用的反序列化器要一一对应，否则将导致数据无法解析
 
