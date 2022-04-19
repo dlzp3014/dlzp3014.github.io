@@ -20,9 +20,6 @@ Kafka是一个多分区、多副本分布式消息系统，以高吞吐、可持
 
 
 
-
-
-
 ## 简介
 
 Kafka架构中包含多个Producer、多个Broker、多个Consumer，以及一个Zookeeper集群(2.8.0版本后废弃 )，其中Kafka用来复制集群元数据的管理，控制器的选举等操作。Producer将消息发生到Broker，Broker负责将收到的消息存储到磁盘中，Consumer负责从Broker订阅并消费消息。架构体系如下
