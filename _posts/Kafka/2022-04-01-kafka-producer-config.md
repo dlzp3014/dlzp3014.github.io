@@ -15,6 +15,7 @@ Producer端大部分参数都有合理的默认值，一般不需要修改它们
 
 
 
+
 ## bootstrap.servers
 
 用于指定生产者客户端连接Kafka集群所需的broker地址，格式为 hots:port
