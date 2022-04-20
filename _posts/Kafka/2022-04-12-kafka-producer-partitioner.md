@@ -15,8 +15,6 @@ Kafka Producer发送消息过程中一个重要的步骤就是要确定将消息
 
 
 
-
-
 ## Partitioner接口定义
 
 Partition接口继承了了Configurable接口，此接口中只包含一个方法`configure(Map<String, ?> configs)`，主要用来获取配置信息及初始化数据，Partitioner接口定义源码如下：
